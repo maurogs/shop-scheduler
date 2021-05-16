@@ -2,6 +2,7 @@ es:
   hello: "Hola mundo"
   name: "Nombre"
   shops: "Tiendas"
+  shop: "Tienda"
   monday: "Lunes"
   tuesday: "Martes"
   wednesday: "Miercoles"

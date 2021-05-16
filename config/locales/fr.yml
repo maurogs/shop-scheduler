@@ -2,6 +2,7 @@ fr:
   hello: "Bonjour monde"
   name: "Nom"
   shops: "Magasins"
+  shop: "Magasin"
   monday: "Lundi"
   tuesday: "Mardi"
   wednesday: "Mercredi"
