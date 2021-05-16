@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Shops</h1>
+<h1><%= t('shops') %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th><%= t('name') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,7 +14,7 @@
     <% @shops.each do |shop| %>
       <tr>
         <td><%= shop.name.capitalize %></td>
-        <td><%= link_to 'Show Schedule', shop %></td>
+        <td><%= link_to t('show_schedule'), shop %></td>
       </tr>
     <% end %>
   </tbody>

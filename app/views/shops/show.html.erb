@@ -9,17 +9,17 @@
     <% @weekdays.each_with_index do |day, index| %>
       <tr class="<%= 'bold' if index.zero? %>">
         <td>
-          <%= index.zero? ? 'Horaires:' : '' %>            
+          <%= index.zero? ? t('schedules') + ':' : '' %>            
         </td>
         <td>
-          <span><%= day %></span>            
+          <span><%= t(day.downcase) %></span>            
         </td>
         <td>
-          <%= @schedule.is_open?(day) ? @schedule.hours(day)&.join(', ') : 'Fermé' %>          
+          <%= @schedule.is_open?(day) ? @schedule.hours(day)&.join(', ') : t('closed') %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Back to Shops list', shops_path %>
+<%= link_to t('back_to_list'), shops_path %>

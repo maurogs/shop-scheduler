@@ -9,6 +9,12 @@
   </head>
 
   <body>
+    <ul>
+      <li><%= link_to '🇫🇷 French', root_path(locale: :fr) %></li>
+      <li><%= link_to '🇬🇧 English', root_path(locale: :en) %></li>
+      <li><%= link_to '🇪🇸 Español', root_path(locale: :es) %></li>
+    </ul>
+    
     <%= yield %>
   </body>
 </html>
