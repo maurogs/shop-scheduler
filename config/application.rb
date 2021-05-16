@@ -33,5 +33,7 @@ module ShopScheduler
     config.generators.system_tests = nil
 
     config.i18n.available_locales = [:fr, :en, :es]
+    config.i18n.default_locale = :fr
+    config.time_zone = 'Europe/Paris'
   end
 end
