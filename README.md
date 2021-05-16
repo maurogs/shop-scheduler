@@ -1,24 +1,55 @@
-# README
+# Shop Scheduler
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+`shop-scheduler` allows you to store shops and corresponding schedules. 
 
-* Ruby version
+### Requirements
 
-* System dependencies
+**Ruby version:** 2.7.2
 
-* Configuration
+**Database:** Postgresql
 
-* Database creation
+## How to run
 
-* Database initialization
+#### **Install dependencies**
 
-* How to run the test suite
+```
+bundle install
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+#### **Create database**
 
-* Deployment instructions
+```
+rake db:create
+```
 
-* ...
+#### **Run migrations**
+
+```
+rake db:migrate
+```
+
+#### **Load shops data**
+
+```
+rake db:seed
+```
+
+#### **Run the tests**
+
+```
+rspec
+```
+
+#### **Added Gems**
+
+`rspec-rails`, `rails-i18n`
+
+## Improvements
+
+- Add create/edit views.
+- Allow users to search by availability.
+- Add indexes to improve queries performance.
+
+
