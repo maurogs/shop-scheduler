@@ -1,8 +1,12 @@
 # Shop Scheduler
 
+<img src="http://g.recordit.co/xRt1YNf3FV.gif" />
+
 ## Description
 
-`shop-scheduler` allows you to store shops and corresponding schedules. 
+`shop-scheduler` allows you to store shops and corresponding schedules.
+
+Application aims to display shop schedules.
 
 ### Requirements
 
