@@ -5,6 +5,16 @@ class Schedule < ApplicationRecord
     :hours_should_not_be_overlapped,
     :hours_should_not_be_empty    
 
+  def is_open?(day)
+    send(day.downcase)
+  end
+
+  def hours(day)
+    send(day.downcase + '_hours')
+  end
+
+  private
+
   def hours_should_be_unique
     Date::DAYNAMES.each do |day|
       hours_hand = hours(day)
@@ -38,9 +48,5 @@ class Schedule < ApplicationRecord
     last = range_two.split('-')
 
     (first[0]..first[1]).overlaps?(last[0]..last[1])
-  end
-
-  def hours(day)
-    send(day.downcase + '_hours')
   end
 end

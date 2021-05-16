@@ -1,9 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @shop.name %>
-</p>
+<h1 class="shop-name">
+  Shop: <%= @shop.name.capitalize %>
+</h1>
 
-<%= link_to 'Edit', edit_shop_path(@shop) %> |
-<%= link_to 'Back', shops_path %>
+<table class="schedules-table">
+  <tbody>
+    <% @weekdays.each_with_index do |day, index| %>
+      <tr class="<%= 'bold' if index.zero? %>">
+        <td>
+          <%= index.zero? ? 'Horaires:' : '' %>            
+        </td>
+        <td>
+          <span><%= day %></span>            
+        </td>
+        <td>
+          <%= @schedule.is_open?(day) ? @schedule.hours(day)&.join(', ') : 'Fermé' %>          
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back to Shops list', shops_path %>

@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+.bold {
+  font-weight: bold;
+}
+
+.shop-name, .schedules-table {
+  margin-bottom: 25px;
+}
