@@ -97,6 +97,10 @@ Style/BlockComments:
 Style/SymbolArray:
   EnforcedStyle: brackets
 
+Style/Lambda:
+  Exclude:
+    - 'app/models/*'
+
 Rails/HasManyOrHasOneDependent:
   Exclude:
     - 'app/models/player.rb'
