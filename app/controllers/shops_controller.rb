@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: :show
+  before_action :set_shop, :weekdays, only: :show
 
   def index
     @shops = Shop.all
@@ -7,7 +7,6 @@ class ShopsController < ApplicationController
 
   def show
     @schedule = @shop.schedule
-    @weekdays = sorted_days
   end
 
   private
@@ -16,11 +15,11 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
   end
 
-  def sorted_days
+  def weekdays
     current_day = daynames.index(today)
     last_days = daynames.drop(current_day)
 
-    last_days + (daynames - last_days)
+    @weekdays = last_days + (daynames - last_days)
   end
 
   def today
