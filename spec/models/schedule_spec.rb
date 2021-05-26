@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Schedule, type: :model do
   let(:shop) { Shop.create(name: 'store') }
 
+  before(:each) { I18n.locale = :en }
+
   it 'should create a new schedule object' do 
     schedule = Schedule.new
 
@@ -25,7 +27,7 @@ RSpec.describe Schedule, type: :model do
     expect(schedule.errors.messages[:shop]).to include('must exist')
   end
 
-  it 'should not create a schedule without shop association' do 
+  it 'should create a schedule with shop association' do 
     schedule = Schedule.new(shop_id: shop.id, monday: false, tuesday: true)
 
     expect(schedule.valid?).to be true
