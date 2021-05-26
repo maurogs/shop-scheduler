@@ -1,46 +1,33 @@
 class Schedule < ApplicationRecord
   belongs_to :shop
 
-  validate :hours_should_be_unique,
-    :hours_should_not_be_overlapped,
-    :hours_should_not_be_empty    
+  validate :valid_hours
 
-  def is_open?(day)
+  def open?(day)
     send(day.downcase)
   end
 
   def hours(day)
-    send(day.downcase + '_hours')
+    send("#{day.downcase}_hours")
   end
 
   private
 
-  def hours_should_be_unique
+  def valid_hours
     Date::DAYNAMES.each do |day|
       hours_hand = hours(day)
-      next if hours_hand.nil? || hours_hand == hours_hand.uniq
+      next if hours_hand.nil?
+      next errors_hours('Hours are duplicated') if hours_hand != hours_hand.uniq
+      next errors_hours('Hours are empty') unless hours_hand.all?(&:present?)
 
-      errors.add(:hours, "Hours are duplicated")
+      if hours_hand.length > 1 && overlapped?(hours_hand.first, hours_hand.last)
+        errors_hours('Hours are overlapped')
+      end
     end
   end
 
-  def hours_should_not_be_overlapped
-    Date::DAYNAMES.each do |day|
-      hours_hand = hours(day)
-      next if hours_hand.nil? || hours_hand.length <= 1
-      next unless overlapped?(hours_hand.first, hours_hand.last)
-
-      errors.add(:hours, "Hours are overlapped")
-    end
-  end
-
-  def hours_should_not_be_empty
-    Date::DAYNAMES.each do |day|
-      hours_hand = hours(day)
-      next if hours_hand.nil? || hours_hand.all?(&:present?)
-
-      errors.add(:hours, "Hours are empty")
-    end
+  def errors_hours(msg)
+    errors.add(:hours, msg)
   end
 
   def overlapped?(range_one, range_two)

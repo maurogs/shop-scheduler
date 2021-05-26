@@ -15,7 +15,7 @@
           <span><%= t(day.downcase) %></span>            
         </td>
         <td>
-          <%= @schedule.is_open?(day) ? @schedule.hours(day)&.join(', ') : t('closed') %>
+          <%= @schedule.open?(day) ? @schedule.hours(day)&.join(', ') : t('closed') %>
         </td>
       </tr>
     <% end %>

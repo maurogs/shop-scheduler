@@ -28,7 +28,7 @@ RSpec.describe ShopsController do
       expect(response).to render_template("show")
     end
 
-    it "return the sorted weekdays" do 
+    it "return the sorted weekdays" do
       get :show, params: { id: shop.id }
       today = Time.zone.now.strftime('%A')
       yesterday = (Time.zone.now - 1.day).strftime('%A')
