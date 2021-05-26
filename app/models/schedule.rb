@@ -1,14 +1,14 @@
 class Schedule < ApplicationRecord
   belongs_to :shop
 
-  validate :valid_hours   
+  validate :valid_hours
 
-  def is_open?(day)
+  def open?(day)
     send(day.downcase)
   end
 
   def hours(day)
-    send(day.downcase + '_hours')
+    send("#{day.downcase}_hours")
   end
 
   private
@@ -16,12 +16,12 @@ class Schedule < ApplicationRecord
   def valid_hours
     Date::DAYNAMES.each do |day|
       hours_hand = hours(day)
-      next if hours_hand.nil?      
-      next errors_hours("Hours are duplicated") if hours_hand != hours_hand.uniq
-      next errors_hours("Hours are empty") if !hours_hand.all?(&:present?)
+      next if hours_hand.nil?
+      next errors_hours('Hours are duplicated') if hours_hand != hours_hand.uniq
+      next errors_hours('Hours are empty') unless hours_hand.all?(&:present?)
 
       if hours_hand.length > 1 && overlapped?(hours_hand.first, hours_hand.last)
-        errors_hours("Hours are overlapped")
+        errors_hours('Hours are overlapped')
       end
     end
   end
